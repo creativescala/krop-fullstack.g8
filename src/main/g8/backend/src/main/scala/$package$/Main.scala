@@ -12,7 +12,8 @@ object Main extends Endpoints, KropEndpoints {
       )
       .otherwiseNotFound
 
-  @main def go(): Unit =
+  @main def run(): Unit =
     ServerBuilder.default
       .withApplication(application)
+      .run()
 }
