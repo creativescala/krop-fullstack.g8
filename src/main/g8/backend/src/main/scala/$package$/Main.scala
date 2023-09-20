@@ -1,6 +1,6 @@
 package $package$
 
-import $package$.endpoints
+import $package$.endpoints.Endpoints
 import krop.all.*
 
 object Main extends Endpoints, KropEndpoints {
@@ -13,5 +13,6 @@ object Main extends Endpoints, KropEndpoints {
       .otherwiseNotFound
 
   @main def go(): Unit =
-    ServerBuilder.withApplication(application)
+    ServerBuilder.default
+      .withApplication(application)
 }
