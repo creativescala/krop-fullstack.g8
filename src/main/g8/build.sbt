@@ -15,7 +15,8 @@ commands += Command.command("build") { state =>
 
 lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
-    "org.creativescala" %% "krop" % "0.1",
+    "org.creativescala" %% "krop" % "0.1-00e1c8b-20230920T072710Z-SNAPSHOT",
+    "org.endpoints4s" %%% "algebra" % "1.10.0",
     "org.scalameta" %% "munit" % "0.7.29" % "test"
   )
 )
@@ -25,15 +26,15 @@ lazy val root = project
   .settings(
     name := """$name;format="normalize"$"""
   )
-  .aggregate(backend, frontend, shared)
+  .aggregate(backend, frontend, shared.jvm, shared.js)
 
-lazy val shared = crossproject(JSPlatform, JVMPlatform)
+lazy val shared = crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
   .in(file("shared"))
   .settings(
     name := """$name;format="normalize"$-shared""",
     commonSettings
   )
-  .crossType(CrossType.Pure)
 
 lazy val backend = project
   .in(file("backend"))
@@ -41,7 +42,7 @@ lazy val backend = project
     name := """$name;format="normalize"$-backend""",
     commonSettings
   )
-  .dependsOn(shared)
+  .dependsOn(shared.jvm)
 
 lazy val frontend = project
   .in(file("frontend"))
@@ -50,4 +51,4 @@ lazy val frontend = project
     commonSettings
   )
   .enablePlugins(ScalaJSPlugin)
-  .dependsOn(shared)
+  .dependsOn(shared.js)
