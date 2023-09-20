@@ -40,7 +40,12 @@ lazy val backend = project
   .settings(
     name := """$name;format="normalize"$-backend""",
     commonSettings,
-    libraryDependencies += "org.creativescala" %% "krop-core" % "0.1"
+    libraryDependencies ++= Seq(
+      "org.creativescala" %% "krop-core" % "0.1",
+      "ch.qos.logback" % "logback-classic" % "1.4.11" % Runtime
+    ),
+    run / javaOptions += "-Dkrop.mode=development",
+    run / fork := true
   )
   .dependsOn(shared.jvm)
 
