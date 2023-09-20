@@ -15,7 +15,6 @@ commands += Command.command("build") { state =>
 
 lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
-    "org.creativescala" %% "krop" % "0.1-00e1c8b-20230920T072710Z-SNAPSHOT",
     "org.endpoints4s" %%% "algebra" % "1.10.0",
     "org.scalameta" %% "munit" % "0.7.29" % "test"
   )
@@ -40,7 +39,8 @@ lazy val backend = project
   .in(file("backend"))
   .settings(
     name := """$name;format="normalize"$-backend""",
-    commonSettings
+    commonSettings,
+    libraryDependencies += "org.creativescala" %% "krop-core" % "0.1"
   )
   .dependsOn(shared.jvm)
 
