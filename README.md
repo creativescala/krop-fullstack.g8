@@ -2,8 +2,7 @@
 
 A [Giter8][g8] template for [Krop][krop]!
 
-Template license
-----------------
+## Template license
 Written in 2023 by:
 - Noel Welsh noel@noelwelsh.com
 
@@ -13,3 +12,18 @@ This template is distributed without any warranty. See <https://creativecommons.
 
 [g8]: https://www.foundweekends.org/giter8/
 [krop]: https://creativescala.org/krop
+
+
+## Development
+
+Make sure you have `g8` installed:
+
+``` sh
+cs install giter8
+```
+
+Run `g8` to create a test project:
+
+``` sh
+g8 file://krop-fullstack.g8 --name=kroptest --force
+```
