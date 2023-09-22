@@ -3,9 +3,12 @@ ThisBuild / organization := "$organization$"
 ThisBuild / scalaVersion := "3.3.1"
 ThisBuild / semanticdbEnabled := true
 
+val kropVersion = "0.2"
+
 // Run this command (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
   "dependencyUpdates" ::
+    "clean" ::
     "compile" ::
     "test" ::
     "scalafixAll" ::
@@ -41,7 +44,7 @@ lazy val backend = project
     name := """$name;format="normalize"$-backend""",
     commonSettings,
     libraryDependencies ++= Seq(
-      "org.creativescala" %% "krop-core" % "0.1",
+      "org.creativescala" %% "krop-core" % kropVersion,
       "ch.qos.logback" % "logback-classic" % "1.4.11" % Runtime
     ),
     run / javaOptions += "-Dkrop.mode=development",
@@ -57,3 +60,22 @@ lazy val frontend = project
   )
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(shared.js)
+
+// This configures the welcome message you see when you start sbt
+
+import sbtwelcome._
+
+logo :=
+  raw"""
+     | _     _  ______  _____   _____
+     | |____/  |_____/ |     | |_____]
+     | |    \_ |    \_ |_____| |
+     |
+     |Version \${kropVersion}
+   """.stripMargin
+
+usefulTasks := Seq(
+  UsefulTask("backend/run", "Start the backend server"),
+  UsefulTask("~compile", "Compile with file-watcher enabled"),
+  UsefulTask("build", "Build everything from scratch")
+)
