@@ -3,7 +3,10 @@ ThisBuild / organization := "$organization$"
 ThisBuild / scalaVersion := "3.3.1"
 ThisBuild / semanticdbEnabled := true
 
+// Dependency versions
 val kropVersion = "0.2"
+val munitVersion = "0.7.29"
+val logbackVersion = "1.4.11"
 
 // Run this command (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
@@ -19,7 +22,7 @@ commands += Command.command("build") { state =>
 lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
     "org.endpoints4s" %%% "algebra" % "1.10.0",
-    "org.scalameta" %% "munit" % "0.7.29" % "test"
+    "org.scalameta" %% "munit" % mUnitVersion % Test
   )
 )
 
@@ -45,8 +48,10 @@ lazy val backend = project
     commonSettings,
     libraryDependencies ++= Seq(
       "org.creativescala" %% "krop-core" % kropVersion,
-      "ch.qos.logback" % "logback-classic" % "1.4.11" % Runtime
+      "ch.qos.logback" % "logback-classic" % logbackVersion % Runtime
     ),
+    // This sets Krop into development mode, which gives useful tools for
+    // developers. If you don't set this, Krop runs in production mode.
     run / javaOptions += "-Dkrop.mode=development",
     run / fork := true
   )
@@ -61,8 +66,8 @@ lazy val frontend = project
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(shared.js)
 
-// This configures the welcome message you see when you start sbt
-
+// This configures the welcome message you see when you start sbt. Change it to
+// add tasks that are useful for your project.
 import sbtwelcome._
 
 logo :=
@@ -78,6 +83,6 @@ logo :=
 
 usefulTasks := Seq(
   UsefulTask("backend/run", "Start the backend server"),
-  UsefulTask("~compile", "Compile with file-watcher enabled"),
-  UsefulTask("build", "Build everything from scratch")
+  UsefulTask("build", "Build everything from scratch"),
+  UsefulTask("~compile", "Compile with file-watcher enabled")
 )
