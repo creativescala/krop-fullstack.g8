@@ -4,7 +4,7 @@ ThisBuild / scalaVersion := "3.3.1"
 ThisBuild / semanticdbEnabled := true
 
 // Dependency versions
-val kropVersion = "0.2"
+val kropVersion = "$kropVersion$"
 val munitVersion = "0.7.29"
 val logbackVersion = "1.4.11"
 
