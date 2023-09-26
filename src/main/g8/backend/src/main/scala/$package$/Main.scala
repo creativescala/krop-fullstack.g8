@@ -3,7 +3,8 @@ package $package$
 import $package$.endpoints.Endpoints
 import krop.all.*
 
-object Main extends Endpoints, KropEndpoints {
+object Main {
+  val joke = Route(Request.get(Path.root / "joke"), Response.ok[String])
 
   val application =
     joke
