@@ -22,7 +22,7 @@ commands += Command.command("build") { state =>
 lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
     "org.endpoints4s" %%% "algebra" % "1.10.0",
-    "org.scalameta" %% "munit" % mUnitVersion % Test
+    "org.scalameta" %% "munit" % munitVersion % Test
   )
 )
 
