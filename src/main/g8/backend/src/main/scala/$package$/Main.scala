@@ -8,8 +8,9 @@ object Main {
     Request.get(Path.root),
     Response.staticFile("assets/index.html")
   ).passthrough
+
   val joke = Route(Request.get(Path.root / "joke"), Response.ok[String])
-    .handle(_ =>
+    .handle(() =>
       "Why did the chicken cross the road? To get to the other side!"
     )
 
