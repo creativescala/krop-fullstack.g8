@@ -1,7 +1,7 @@
 package $package$
 
-import $package$.endpoints.Endpoints
-import krop.all.*
+import krop.all.{*, given}
+import $package$.routes.Routes
 
 object Main {
   val index = Route(
@@ -9,13 +9,13 @@ object Main {
     Response.staticFile("assets/index.html")
   ).passthrough
 
-  val joke = Route(Request.get(Path.root / "joke"), Response.ok[String])
+  val joke = Route(Request.get(Path / "joke"), Response.ok(Entity.text))
     .handle(() =>
       "Why did the chicken cross the road? To get to the other side!"
     )
 
   val application =
-    index.orElse(joke).otherwiseNotFound
+    index.orElse(joke).orElse(Application.notFound)
 
   @main def run(): Unit =
     ServerBuilder.default

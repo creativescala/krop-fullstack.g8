@@ -6,7 +6,7 @@ ThisBuild / semanticdbEnabled := true
 // Dependency versions
 val kropVersion = "$kropVersion$"
 val munitVersion = "0.7.29"
-val logbackVersion = "1.4.11"
+val logbackVersion = "1.5.0"
 
 // Run this command (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
@@ -21,7 +21,7 @@ commands += Command.command("build") { state =>
 
 lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
-    "org.endpoints4s" %%% "algebra" % "1.10.0",
+    "org.creativescala" %% "krop-core" % kropVersion,
     "org.scalameta" %% "munit" % munitVersion % Test
   )
 )
@@ -47,7 +47,6 @@ lazy val backend = project
     name := """$name;format="normalize"$-backend""",
     commonSettings,
     libraryDependencies ++= Seq(
-      "org.creativescala" %% "krop-core" % kropVersion,
       "ch.qos.logback" % "logback-classic" % logbackVersion % Runtime
     ),
     // This sets Krop into development mode, which gives useful tools for
