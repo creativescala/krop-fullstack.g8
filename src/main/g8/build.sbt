@@ -10,12 +10,14 @@ val logbackVersion = "1.5.0"
 
 // Run this command (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
-  "dependencyUpdates" ::
-    "clean" ::
+  "clean" ::
     "compile" ::
     "test" ::
     "scalafixAll" ::
     "scalafmtAll" ::
+    "scalafmtSbt" ::
+    "dependencyUpdates" ::
+    "reload plugins; dependencyUpdates; reload return" ::
     state
 }
 
