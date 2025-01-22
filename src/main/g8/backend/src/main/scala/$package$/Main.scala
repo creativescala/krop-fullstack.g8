@@ -1,15 +1,18 @@
 package $package$
 
-import krop.all.{*, given}
+import $package$.html
 import $package$.routes.Routes
+import krop.all.{*, given}
 
 object Main {
+  val name = "$name$"
+
   val index = Route(
     Request.get(Path.root),
-    Response.staticFile("assets/index.html")
-  ).passthrough
+    Response.ok(Entity.html)
+  ).(() => html.index(name))
 
-  val joke = Route(Request.get(Path / "joke"), Response.ok(Entity.text))
+  val joke = Routes.joke
     .handle(() =>
       "Why did the chicken cross the road? To get to the other side!"
     )

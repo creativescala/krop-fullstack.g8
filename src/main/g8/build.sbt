@@ -1,6 +1,6 @@
 // give the user a nice default project!
 ThisBuild / organization := "$organization$"
-ThisBuild / scalaVersion := "3.3.1"
+ThisBuild / scalaVersion := "3.3.4"
 ThisBuild / semanticdbEnabled := true
 
 // Dependency versions
@@ -50,10 +50,12 @@ lazy val backend = project
       "ch.qos.logback" % "logback-classic" % logbackVersion % Runtime
     ),
     // This sets Krop into development mode, which gives useful tools for
-    // developers. If you don't set this, Krop runs in production mode.
+    // developers. Krop runs in production mode if you don't set this.
     run / javaOptions += "-Dkrop.mode=development",
+    reStart / javaOptions += "-Dkrop.mode=development",
     run / fork := true
   )
+  .enablePlugins(SbtTwirl)
   .dependsOn(shared.jvm)
 
 lazy val frontend = project
@@ -81,7 +83,10 @@ logo :=
    """.stripMargin
 
 usefulTasks := Seq(
-  UsefulTask("backend/run", "Start the backend server"),
+  UsefulTask(
+    "~backend/reStart",
+    "Start the backend server, and restart on any change"
+  ),
   UsefulTask("build", "Build everything from scratch"),
   UsefulTask("~compile", "Compile with file-watcher enabled")
 )
