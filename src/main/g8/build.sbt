@@ -40,8 +40,12 @@ lazy val shared = crossProject(JSPlatform, JVMPlatform)
   .in(file("shared"))
   .settings(
     name := """$name;format="normalize"$-shared""",
-    commonSettings
+    commonSettings,
+    Compile / unmanagedSourceDirectories ++= Seq(
+      baseDirectory.value.getParentFile / "src"
+    )
   )
+  .enablePlugins(KropLayout)
 
 lazy val backend = project
   .in(file("backend"))
@@ -57,7 +61,8 @@ lazy val backend = project
     reStart / javaOptions += "-Dkrop.mode=development",
     run / fork := true
   )
-  .enablePlugins(SbtTwirl)
+  // KropTwirlLayout must come after SbtTwirl as it changes Twirl configuration
+  .enablePlugins(SbtTwirl, KropLayout, KropTwirlLayout)
   .dependsOn(shared.jvm)
 
 lazy val frontend = project
@@ -66,7 +71,7 @@ lazy val frontend = project
     name := """$name;format="normalize"$-frontend""",
     commonSettings
   )
-  .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSPlugin, KropLayout)
   .dependsOn(shared.js)
 
 // This configures the welcome message you see when you start sbt. Change it to

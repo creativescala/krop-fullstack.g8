@@ -1,7 +1,7 @@
 package $package$
 
-import $package$.html
 import $package$.routes.Routes
+import $package$.views.html
 import krop.all.{*, given}
 
 object Main {

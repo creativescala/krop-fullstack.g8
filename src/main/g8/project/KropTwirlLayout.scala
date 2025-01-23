@@ -1,0 +1,22 @@
+// A simple plugin that sets the directory layout for Twirl to the Krop
+// standard. This removes the excessive indirection the Maven standard uses.
+// Inspired by PlayLayoutPlugin.
+
+import sbt._
+import sbt.Keys._
+
+import play.twirl.sbt.Import.TwirlKeys
+
+object KropTwirlLayout extends AutoPlugin {
+  // Must be explicitly enabled
+  override def trigger = noTrigger
+
+  override def projectSettings = Seq(
+    Compile / TwirlKeys.compileTemplates / sourceDirectories := Seq(
+      (Compile / scalaSource).value
+    ),
+    Test / TwirlKeys.compileTemplates / sourceDirectories := Seq(
+      (Test / scalaSource).value
+    )
+  )
+}
