@@ -1,44 +1,20 @@
 @(name: String)
-<!doctype html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>@name</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<body class="container mx-auto px-4 py-32 text-zinc-900">
+  <h1 class="text-2xl text-violet-700 font-semibold">@name</h1>
+  <p class="pt-2">Welcome to @name. An amazing web application. Coming soon.</p>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <!-- Place favicon.ico in the root directory -->
-  </head>
-
-  <body class="container mx-auto px-4 py-32 text-zinc-900">
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
-        your experience.
-      </p>
-    <![endif]-->
-    <h1 class="text-2xl text-violet-700 font-semibold">@name</h1>
-    <p class="pt-2">
-      Welcome to @name. An amazing web application. Coming soon.
-    </p>
-
-    <p class="text-lg font-semibold pt-8">
-      Built with
-      <span class="text-violet-700">Krop</span>
-      <span class="rounded-full ml-2 py-2 px-2 text-xs bg-violet-200"
-        >v0.7.0</span
-      >
-    </p>
-    <p class="pt-2">Delightful web applications that are a delight to build.</p>
-
-    <p
-      class="inline-block rounded-full mt-4 py-2 px-4 font-semibold bg-zinc-100 hover:bg-violet-200 hover:text-violet-900"
+  <p class="text-lg font-semibold pt-8">
+    Built with
+    <span class="text-violet-700">Krop</span>
+    <span class="rounded-full ml-2 py-2 px-2 text-xs bg-violet-200"
+      >v0.7.0</span
     >
-      <a href="https://creativescala.org/krop">Krop Documentation</a>
-    </p>
-  </body>
-</html>
+  </p>
+  <p class="pt-2">Delightful web applications that are a delight to build.</p>
+
+  <p
+    class="inline-block rounded-full mt-4 py-2 px-4 font-semibold bg-zinc-100 hover:bg-violet-200 hover:text-violet-900"
+  >
+    <a href="https://creativescala.org/krop">Krop Documentation</a>
+  </p>
+</body>

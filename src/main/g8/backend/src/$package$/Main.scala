@@ -10,7 +10,7 @@ object Main {
   val index = Route(
     Request.get(Path.root),
     Response.ok(Entity.html)
-  ).handle(() => html.index(name).toString)
+  ).handle(() => html.base(name, html.index(name).toString).toString)
 
   val joke = Routes.joke
     .handle(() =>

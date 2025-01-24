@@ -1,6 +1,6 @@
 // give the user a nice default project!
 ThisBuild / organization := "$organization$"
-ThisBuild / scalaVersion := "3.3.4"
+ThisBuild / scalaVersion := "3.6.3"
 ThisBuild / semanticdbEnabled := true
 
 // Dependency versions
@@ -62,7 +62,8 @@ lazy val backend = project
     run / fork := true
   )
   // KropTwirlLayout must come after SbtTwirl as it changes Twirl configuration
-  .enablePlugins(SbtTwirl, KropLayout, KropTwirlLayout)
+  .enablePlugins(SbtTwirl)
+  .enablePlugins(KropLayout, KropTwirlLayout)
   .dependsOn(shared.jvm)
 
 lazy val frontend = project
