@@ -3,5 +3,17 @@ package $package$.routes
 import krop.all.*
 
 object Routes {
-  val joke = Route(Request.get(Path / "joke"), Response.ok(Entity.text))
+  val home =
+    Route(
+      Request.get(Path.root),
+      Response.ok(Entity.html)
+    )
+
+  // This route serves static assets, such as Javascript or stylesheets, from
+  // your resource directory.
+  val assets =
+    Route(
+      Request.get(Path / "assets" / Param.mkString("/")),
+      Response.staticResource("$package$/assets/")
+    )
 }

@@ -7,18 +7,14 @@ import krop.all.{*, given}
 object Main {
   val name = "$name$"
 
-  val index = Route(
-    Request.get(Path.root),
-    Response.ok(Entity.html)
-  ).handle(() => html.base(name, html.index(name).toString).toString)
+  val home =
+    Routes.home.handle(() => html.base(name, html.home(name)).toString)
 
-  val joke = Routes.joke
-    .handle(() =>
-      "Why did the chicken cross the road? To get to the other side!"
-    )
+  val assets =
+    Routes.assets.passthrough
 
   val application =
-    index.orElse(joke).orElse(Application.notFound)
+    home.orElse(assets).orElse(Application.notFound)
 
   @main def run(): Unit =
     ServerBuilder.default
