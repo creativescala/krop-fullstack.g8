@@ -1,12 +1,12 @@
 // give the user a nice default project!
 ThisBuild / organization := "$organization$"
-ThisBuild / scalaVersion := "3.6.3"
+ThisBuild / scalaVersion := "3.6.4"
 ThisBuild / semanticdbEnabled := true
 
 // Dependency versions
 val kropVersion = "$kropVersion$"
-val munitVersion = "0.7.29"
-val logbackVersion = "1.5.0"
+val munitVersion = "1.1.0"
+val logbackVersion = "1.5.18"
 
 // Run this command (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
@@ -61,8 +61,6 @@ lazy val backend = project
     reStart / javaOptions += "-Dkrop.mode=development",
     run / fork := true
   )
-  // KropTwirlLayout must come after SbtTwirl as it changes Twirl configuration
-  .enablePlugins(SbtTwirl)
   .enablePlugins(KropLayout, KropTwirlLayout)
   .dependsOn(shared.jvm)
 

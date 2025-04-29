@@ -5,11 +5,14 @@
 import sbt._
 import sbt.Keys._
 
+import play.twirl.sbt.SbtTwirl
 import play.twirl.sbt.Import.TwirlKeys
 
 object KropTwirlLayout extends AutoPlugin {
   // Must be explicitly enabled
   override def trigger = noTrigger
+
+  override def requires = SbtTwirl
 
   override def projectSettings = Seq(
     Compile / TwirlKeys.compileTemplates / sourceDirectories := Seq(

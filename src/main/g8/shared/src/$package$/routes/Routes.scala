@@ -13,7 +13,7 @@ object Routes {
   // your resource directory.
   val assets =
     Route(
-      Request.get(Path / "assets" / Param.mkString("/")),
+      Request.get(Path / "assets" / Param.separatedString("/")),
       Response.staticResource("$package$/assets/")
     )
 }
