@@ -1,10 +1,12 @@
 package $package$
 
+import cats.effect.IOApp
+import krop.all.{*, given}
+import $package$.conf.Context
 import $package$.routes.Routes
 import $package$.views.html
-import krop.all.{*, given}
 
-object Main {
+object Main extends IOApp.Simple {
   val name = "$name$"
 
   val home =
@@ -16,8 +18,11 @@ object Main {
   val application =
     home.orElse(assets).orElse(Application.notFound)
 
-  @main def run(): Unit =
-    ServerBuilder.default
-      .withApplication(application)
-      .run()
+  val run =
+    Context.current.use { _ =>
+      ServerBuilder.default
+        .withApplication(application)
+        .build
+        .toIO
+    }
 }
