@@ -3,10 +3,14 @@ ThisBuild / organization := "$organization$"
 ThisBuild / scalaVersion := "3.6.4"
 ThisBuild / semanticdbEnabled := true
 
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 // Dependency versions
+val declineVersion = "2.5.0"
+val flywayVersion = "11.8.0"
 val kropVersion = "$kropVersion$"
-val munitVersion = "1.1.0"
 val logbackVersion = "1.5.18"
+val munitVersion = "1.1.1"
 
 // Run this command (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
@@ -54,6 +58,8 @@ lazy val backend = project
     name := """$name;format="normalize"$-backend""",
     commonSettings,
     libraryDependencies ++= Seq(
+      "com.monovore" %% "decline-effect" % declineVersion,
+      "org.flywaydb" % "flyway-core" % flywayVersion,
       "ch.qos.logback" % "logback-classic" % logbackVersion % Runtime
     ),
     // This sets Krop into development mode, which gives useful tools for
@@ -91,7 +97,7 @@ logo :=
 
 usefulTasks := Seq(
   UsefulTask(
-    "~backend/reStart",
+    "~backend/reStart serve",
     "Start the backend server, and restart on any change"
   ),
   UsefulTask("build", "Build everything from scratch"),
