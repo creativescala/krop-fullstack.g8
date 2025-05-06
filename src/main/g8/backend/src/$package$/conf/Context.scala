@@ -20,7 +20,7 @@ object Context {
   // The context for the current mode
   val current: Resource[IO, Context] =
     Mode.mode match {
-      case Mode.Development => production
-      case Mode.Production  => development
+      case Mode.Development => development
+      case Mode.Production  => production
     }
 }
