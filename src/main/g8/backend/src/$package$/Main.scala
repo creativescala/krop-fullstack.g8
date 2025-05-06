@@ -5,6 +5,8 @@ import cats.effect.IO
 import com.monovore.decline.Opts
 import com.monovore.decline.effect.CommandIOApp
 import krop.all.{*, given}
+import krop.tool.cli.*
+
 import $package$.conf.Context
 import $package$.routes.Routes
 import $package$.views.html
