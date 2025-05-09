@@ -1,4 +1,4 @@
-@(name: String)
+@(name: String, kropVersion: String)
 <body class="container mx-auto px-4 py-32 text-zinc-900">
   <h1 class="text-2xl text-violet-700 font-semibold">@name</h1>
   <p class="pt-2">Welcome to @name. An amazing web application. Coming soon.</p>
@@ -7,7 +7,7 @@
     Built with
     <span class="text-violet-700">Krop</span>
     <span class="rounded-full ml-2 py-2 px-2 text-xs bg-violet-200"
-      >v$kropVersion$</span
+      >@kropVersion</span
     >
   </p>
   <p class="pt-2">Delightful web applications that are a delight to build.</p>
