@@ -1,4 +1,3 @@
-
 // give the user a nice default project!
 ThisBuild / organization := "$organization$"
 ThisBuild / scalaVersion := "3.6.4"
@@ -63,15 +62,15 @@ lazy val backend = project
       "org.flywaydb" % "flyway-core" % flywayVersion,
       "ch.qos.logback" % "logback-classic" % logbackVersion % Runtime
     ),
-  .settings(
-    buildInfoKeys := Seq[BuildInfoKey]("kropVersion" -> kropVersion),
-    buildInfoPackage := "krop"
-  )
     // This sets Krop into development mode, which gives useful tools for
     // developers. Krop runs in production mode if you don't set this.
     run / javaOptions += "-Dkrop.mode=development",
     reStart / javaOptions += "-Dkrop.mode=development",
     run / fork := true
+  )
+  .settings(
+    buildInfoKeys := Seq[BuildInfoKey]("kropVersion" -> kropVersion),
+    buildInfoPackage := "krop"
   )
   .enablePlugins(KropLayout, KropTwirlLayout)
   .enablePlugins(BuildInfoPlugin)
