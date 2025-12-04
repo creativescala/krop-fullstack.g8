@@ -28,6 +28,7 @@ commands += Command.command("build") { state =>
 lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
     "org.creativescala" %% "krop-core" % kropVersion,
+    "org.creativescala" %% "krop-asset" % kropVersion,
     "org.creativescala" %% "krop-sqlite" % kropVersion,
     "org.scalameta" %% "munit" % munitVersion % Test
   )
