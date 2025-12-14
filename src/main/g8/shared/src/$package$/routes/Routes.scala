@@ -1,6 +1,7 @@
 package $package$.routes
 
 import krop.all.*
+import krop.asset.AssetRoute
 
 object Routes {
   val home =
@@ -12,8 +13,5 @@ object Routes {
   // This route serves static assets, such as Javascript or stylesheets, from
   // your resource directory.
   val assets =
-    Route(
-      Request.get(Path / "assets" / Param.separatedString("/")),
-      Response.staticResource("$package$/assets/")
-    )
+    AssetRoute(Path / "assets", "resources/$package$/assets/")
 }

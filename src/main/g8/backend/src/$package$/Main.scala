@@ -21,10 +21,12 @@ object Main
     ) {
 
   val home =
-    Routes.home.handle(() => html.base(name, html.home(name, BuildInfo.kropVersion)).toString)
+    Routes.home.handle(() =>
+      html.base(name, html.home(name, BuildInfo.kropVersion)).toString
+    )
 
   val assets =
-    Routes.assets.passthrough
+    Routes.assets
 
   val application =
     home.orElse(assets).orElse(Application.notFound)
