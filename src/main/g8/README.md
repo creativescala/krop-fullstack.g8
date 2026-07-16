@@ -1,3 +1,3 @@
 # $name$
 
-Within sbt run `backend / run` to start the server.
+Within sbt run `~backend/reStart serve` to start the server.
