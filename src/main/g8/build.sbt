@@ -67,7 +67,9 @@ lazy val backend = project
     // developers. Krop runs in production mode if you don't set this.
     run / javaOptions += "-Dkrop.mode=development",
     reStart / javaOptions += "-Dkrop.mode=development",
-    run / fork := true
+    run / fork := true,
+    // To avoid warn "unused import" for /htmx/views/*.scala.html files
+    scalacOptions += "-Wconf:src=.*/views/html/.*:silent",
   )
   .settings(
     buildInfoKeys := Seq[BuildInfoKey]("kropVersion" -> kropVersion),

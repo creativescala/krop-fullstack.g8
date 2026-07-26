@@ -13,5 +13,5 @@ object Routes {
   // This route serves static assets, such as Javascript or stylesheets, from
   // your resource directory.
   val assets =
-    AssetRoute(Path / "assets", "resources/$package$/assets/")
+    AssetRoute(Path / "assets", "resources/assets/")
 }
